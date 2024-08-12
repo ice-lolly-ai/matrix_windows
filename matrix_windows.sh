@@ -12,7 +12,6 @@ printRandomNumberMatrix() {
     
     while true; do
         while [ "$running" = true ]; do
-            clearScreen # Clear the screen before each matrix is printed
             for (( i = 0; i < 50; i++ )); do
                 for (( j = 0; j < 500; j++ )); do 
                     randomNumber=$(( RANDOM % 100 )) # Generate a random number between 0 and 99
@@ -22,7 +21,7 @@ printRandomNumberMatrix() {
             done
             
             echo "Press Spacebar to pause or 'q' to quit..."
-            read -rsn1 input # Read one character without echoing it
+            read -rsn1 -t 1 input # Read one character without echoing it, with a 1-second timeout
             
             case "$input" in
                 " ")
