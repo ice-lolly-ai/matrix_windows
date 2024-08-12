@@ -5,13 +5,12 @@ clearScreen() {
 }
 
 printRandomNumberMatrix() {
-    clearScreen
-    echo "Random Number Matrix (50x50):"
-    
     running=true
     
     while true; do
         while [ "$running" = true ]; do
+            clearScreen
+            echo "Random Number Matrix (50x50):"
             for (( i = 0; i < 50; i++ )); do
                 for (( j = 0; j < 500; j++ )); do 
                     randomNumber=$(( RANDOM % 100 )) # Generate a random number between 0 and 99
@@ -21,7 +20,7 @@ printRandomNumberMatrix() {
             done
             
             echo "Press Spacebar to pause or 'q' to quit..."
-            read -rsn1 -t 1 input # Read one character without echoing it, with a 1-second timeout
+            read -rsn1 -t 0.1 input # Read one character without echoing it, with a 0.1-second timeout
             
             case "$input" in
                 " ")
@@ -31,8 +30,6 @@ printRandomNumberMatrix() {
                     exit 0 # Exit the script if 'q' is pressed
                     ;;
             esac
-            
-            sleep 0.01 # Adjust delay to 0.01 seconds (10 milliseconds)
         done
         
         # Second loop to handle paused state and resume when spacebar is pressed again
